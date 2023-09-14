@@ -1,26 +1,37 @@
 import streamlit as st
-from PIL import Image
-
+from streamlit_option_menu import option_menu
+import pybase64
+import warnings
 
 st.set_page_config(page_title="Selvamani Andiappan",
                    page_icon="",
                    layout="wide",
                    initial_sidebar_state="expanded")
 
-# Define the CSS style
-background_style = """
+def get_img_as_base64(file):
+    with open(file, "rb") as f:
+        data = f.read()
+    return pybase64.b64encode(data).decode()
+img = get_img_as_base64("Background.png")
+
+page_bg_img = f"""
 <style>
-body {
-    background-image: url('Background.png');
-    background-size: cover;
-}
+[data-testid="stAppViewContainer"] > .main {{
+background-image: url("data:image/png;base64,{img}");
+background-size: 100%;
+background-position: top left;
+background-repeat: no-repeat;
+background-attachment: local;
+}}
+
+[data-testid="stHeader"] {{
+background: rgba(0,0,0,0);
+}}
+
+[data-testid="stToolbar"] {{
+right: 2rem;
+}}
 </style>
 """
 
-# Display the CSS style using st.markdown
-st.markdown(background_style, unsafe_allow_html=True)
-
 st.title("Selvamani Andiappan")
-st.title("Welcome to My Webpage")
-st.image('sample.jpg')
-st.write('Thank You')
