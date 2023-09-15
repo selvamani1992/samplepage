@@ -12,8 +12,8 @@ def get_img_as_base64(file):
     with open(file, "rb") as f:
         data = f.read()
     return pybase64.b64encode(data).decode()
-img = get_img_as_base64("Background.png")
-sideimg = get_img_as_base64("sidebackground.jpg")
+img = get_img_as_base64("bg.jpg")
+sideimg = get_img_as_base64("sbg.jpg")
 
 page_bg_img = f"""
 <style>
