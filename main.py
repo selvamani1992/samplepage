@@ -13,6 +13,7 @@ def get_img_as_base64(file):
         data = f.read()
     return pybase64.b64encode(data).decode()
 img = get_img_as_base64("Background.png")
+sideimg = get_img_as_base64("sidebackground.jpg")
 
 page_bg_img = f"""
 <style>
@@ -24,6 +25,13 @@ background-repeat: no-repeat;
 background-attachment: local;
 }}
 
+[data-testid="stSidebar"] > div:first-child {{
+background-image: url("data:image/png;base64,{sideimg}");
+background-position: 100%; 
+background-repeat: repeat;
+background-attachment: fixed;
+}}
+
 [data-testid="stHeader"] {{
 background: rgba(0,0,0,0);
 }}
@@ -31,7 +39,18 @@ background: rgba(0,0,0,0);
 [data-testid="stToolbar"] {{
 right: 2rem;
 }}
+
 </style>
 """
 
-st.title("Selvamani Andiappan")
+st.markdown(page_bg_img, unsafe_allow_html=True)
+
+#st.markdown("<h1 style='color: BLACK;'><U>SELVAMANI ANDIAPPAN</h1>", unsafe_allow_html=True)
+st.title('SELVAMANI ANDIAPPAN')
+
+'SELVAMANI ANDIAPPAN'
+'''Hope you are doing great<b>
+see you soon'''
+
+with st.sidebar:
+    option_menu("Options",options=['Home','Professional','Education','Projects','Contact'],default_index=0,orientation='vertical')
